@@ -9,6 +9,7 @@ const { shader = "error.frag", width = "500", height = "500" } = Astro.props;
 ---
 
 <canvas
+  title={shader}
   data-shader-canvas
   data-shader-file={shader}
   width={width}

@@ -17,7 +17,6 @@ void main() {
 
     float dist = (0.5 - sp.x) + (0.5 - sp.y);
 
-    
     float sizex = 40. * sin(u_time*0.5) * 40.;
     float sizey = 40. * cos(u_time*0.5) * 40.;
 
