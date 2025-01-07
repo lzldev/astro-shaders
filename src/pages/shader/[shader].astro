@@ -19,17 +19,32 @@ const { shader } = Astro.params;
 ---
 
 <Layout>
-  <ShaderCanvas shader={shader + ".frag"} width="1024px" height="1024px" />
+  <div style="display:flex;width:100%;height:100%;justify-content:center;">
+    <ShaderCanvas shader={shader + ".frag"} width="900" height="900" />
+  </div>
 </Layout>
 <script>
   const body = document.querySelector<HTMLBodyElement>("body")!;
-  const canvas = document.querySelector<HTMLCanvasElement>("body>canvas")!;
+  const canvas = document.querySelector<HTMLCanvasElement>("body>div>canvas")!;
+  const l = canvas.getContext("webgl")!;
+  console.log(canvas, l);
 
-  //   function resizeCanvas() {
-  //     canvas.width = body.clientWidth;
-  //     canvas.height = body.clientHeight;
-  //   }
+  const s = new URLSearchParams(window.location.search);
+  console.log(s.get("full"));
 
-  //   resizeCanvas();
-  //   body.addEventListener("resize", () => {});
+  function resizeCanvas() {
+    let zoom = (window.outerWidth - 10) / window.innerWidth;
+    const h = window.innerHeight - 12;
+    const w = window.innerWidth;
+
+    const w2 = s.get("full") != null ? w - 24 : Math.min(h, w);
+
+    canvas.width = w2;
+    canvas.height = h;
+
+    //l.viewport(0, 0, w2, h);
+  }
+
+  resizeCanvas();
+  window.addEventListener("resize", () => resizeCanvas());
 </script>

@@ -28,16 +28,14 @@ float circle(in vec2 st,in vec2 center,float _radius) {
 
 void main() {
 	vec2 st = gl_FragCoord.xy/u_resolution.xy;
-    vec2 nm = u_mouse / u_resolution.xy;
+    vec2 nmouse = u_mouse / u_resolution.xy;
     vec2 nmlclick = u_lastclick / u_resolution.xy;
     
     vec3 color = vec3(st.x,st.y,1.);
     
-    vec2 center = nm;
-
-    color += vec3(5.) * circle(st,center,0.005);
-    
-    color += vec3(1.,1.,1.) * circle(st,nmlclick,0.005);
+    color += vec3(1.) * circle(st,vec2(0.5),0.1,0.001);
+    color += vec3(1.) * circle(st,nmouse,0.005);
+    color += vec3(1.) * circle(st,nmlclick,0.005);
 
     gl_FragColor = vec4(color,1.);
 }

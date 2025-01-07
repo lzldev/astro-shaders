@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const shaders = import.meta.glob("../assets/shaders/*.frag");
+
+const files = Object.keys(shaders).map((key) =>
+  key.split("/").at(-1)?.split(".").slice(0, -1).join("")
+);
+
+console.log(files);
+---
+
+<Layout>
+  <div style="display:flex;flex-direction:column;gap:20px;">
+    {
+      files.map((file) => (
+        <div>
+          <a style="color:white" href={`/shader/${file}`}>
+            {file}
+          </a>
+        </div>
+      ))
+    }
+  </div></Layout
+>

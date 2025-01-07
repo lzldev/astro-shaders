@@ -13,14 +13,16 @@ void main() {
     vec2 norm = gl_FragCoord.xy / u_resolution.xy;
     
     vec2 vdist = gl_FragCoord.xy-(u_resolution/2.);
-    float dist = dot(vdist,vdist) * 4.;
+    float dist = dot(vdist,vdist);
 
-    float res = u_resolution.x / 8.;
+    float res = u_resolution.x / 128.;
     
-    res *= 1.-(dist / 8.);
+    res *= 1.-(dist / 32.);
+
     //float mul = sin(u_time * speed) * 0.1;
-    norm.x += cos(u_time * speed) * 0.1;
-    norm.y += sin(u_time * speed) * 0.1;
+
+    res += sin(u_time * speed) * 0.1;
+    res += sin(u_time * speed) * 0.1;
 
     float stretch_y = 2.;
     float stretch_x = 3.3;

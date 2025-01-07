@@ -1,11 +1,11 @@
 ---
 interface Props {
   shader?: string;
-  width?: string;
-  height?: string;
+  width?: string | number;
+  height?: string | number;
 }
 
-const { shader = "error.frag", width = "500", height = "500" } = Astro.props;
+const { shader = "error.frag", width = "256", height = "256" } = Astro.props;
 ---
 
 <canvas
@@ -13,7 +13,8 @@ const { shader = "error.frag", width = "500", height = "500" } = Astro.props;
   data-shader-canvas
   data-shader-file={shader}
   width={width}
-  height={height}></canvas>
+  height={height}
+  style="background-color:transparent;"></canvas>
 <script>
   import "glslCanvas";
 
@@ -42,6 +43,10 @@ const { shader = "error.frag", width = "500", height = "500" } = Astro.props;
 
     canvas.addEventListener("mouseup", (e) => {
       sandbox.setUniform("u_click", null);
+    });
+
+    canvas.addEventListener("mouseout", (e) => {
+      sandbox.setUniform("u_mouse", 0, 0);
     });
 
     const shader = (await file()) as string;

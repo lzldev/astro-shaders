@@ -2,16 +2,26 @@
 import ShaderCanvas from "../components/ShaderCanvas.astro";
 import Layout from "../layouts/Layout.astro";
 
+const size = 256;
+const width = size;
+const height = size;
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-  <ShaderCanvas shader="shader_second.frag" />
-  <ShaderCanvas shader="crt.frag" />
-  <ShaderCanvas shader="circle.frag" />
-  <ShaderCanvas />
-  <ShaderCanvas shader="pixels.frag" />
-  <ShaderCanvas shader="noise.frag" />
-  <!-- error shader -->
+  <ShaderCanvas width={width} height={height} shader="shader_second.frag" />
+  <ShaderCanvas width={width} height={height} shader="crt.frag" />
+  <ShaderCanvas width={width} height={height} shader="circle.frag" />
+  <ShaderCanvas width={width} height={height} />
+  <ShaderCanvas width={width} height={height} shader="error_2.frag" />
+  <ShaderCanvas width={width} height={height} shader="pixels.frag" />
+  <ShaderCanvas width={width} height={height} shader="noise.frag" />
+  <ShaderCanvas
+    width={width}
+    height={height}
+    shader="actual_round_noise.frag"
+  />
+  <ShaderCanvas width={width} height={height} shader="tunnel.frag" />
+  <ShaderCanvas width={width} height={height} shader="wheel.frag" />
 </Layout>
