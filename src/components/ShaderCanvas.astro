@@ -31,6 +31,18 @@ const { shader = "error.frag", width = "500", height = "500" } = Astro.props;
 
     const file = shaders[`../assets/shaders/${canvas.dataset["shaderFile"]}`];
 
+    canvas.addEventListener("mousedown", (e) => {
+      const invertedY = canvas.clientHeight - e.offsetY;
+
+      sandbox.setUniform("u_click", e.offsetX, invertedY);
+      sandbox.setUniform("u_lastclick", e.offsetX, invertedY);
+      sandbox.setUniform("u_tlastclick", performance.now());
+    });
+
+    canvas.addEventListener("mouseup", (e) => {
+      sandbox.setUniform("u_click", null);
+    });
+
     const shader = (await file()) as string;
 
     sandbox.load(shader);
