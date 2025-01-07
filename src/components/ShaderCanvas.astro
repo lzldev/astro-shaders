@@ -1,0 +1,38 @@
+---
+interface Props {
+  shader?: string;
+  width?: string;
+  height?: string;
+}
+
+const { shader = "error.frag", width = "500", height = "500" } = Astro.props;
+---
+
+<canvas
+  data-shader-canvas
+  data-shader-file={shader}
+  width={width}
+  height={height}></canvas>
+<script>
+  import "glslCanvas";
+
+  const shaders = import.meta.glob("../assets/shaders/*.frag", {
+    import: "default",
+    query: "?raw",
+  });
+
+  const canvas = document.querySelectorAll<HTMLCanvasElement>(
+    "[data-shader-canvas]"
+  )!;
+
+  canvas.forEach(async (canvas) => {
+    //@ts-expect-error
+    const sandbox = new GlslCanvas(canvas);
+
+    const file = shaders[`../assets/shaders/${canvas.dataset["shaderFile"]}`];
+
+    const shader = (await file()) as string;
+
+    sandbox.load(shader);
+  });
+</script>

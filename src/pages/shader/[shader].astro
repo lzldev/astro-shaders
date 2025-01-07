@@ -1,0 +1,35 @@
+---
+import ShaderCanvas from "../../components/ShaderCanvas.astro";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const shaders = import.meta.glob("../../assets/shaders/*.frag");
+
+  const files = Object.keys(shaders).map((key) =>
+    key.split("/").at(-1)?.split(".").slice(0, -1).join("")
+  );
+
+  return files.map((file) => ({
+    params: {
+      shader: file,
+    },
+  }));
+}
+const { shader } = Astro.params;
+---
+
+<Layout>
+  <ShaderCanvas shader={shader + ".frag"} width="1024px" height="1024px" />
+</Layout>
+<script>
+  const body = document.querySelector<HTMLBodyElement>("body")!;
+  const canvas = document.querySelector<HTMLCanvasElement>("body>canvas")!;
+
+  //   function resizeCanvas() {
+  //     canvas.width = body.clientWidth;
+  //     canvas.height = body.clientHeight;
+  //   }
+
+  //   resizeCanvas();
+  //   body.addEventListener("resize", () => {});
+</script>
