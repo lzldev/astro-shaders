@@ -8,12 +8,16 @@ uniform float u_time;
 
 void main() {
     vec2 norm = gl_FragCoord.xy / u_resolution.xy;
+    norm.x *= u_resolution.x/u_resolution.y;
+    if(u_resolution.x/u_resolution.y > 1.1 || u_resolution.x/u_resolution.y < 0.9 ){
+        norm.x -= 0.5;
+    }
     vec2 center = vec2(0.5);
     
     vec2 vdist = norm-center;
     float dist = dot(vdist,vdist) * 4.;
 
-    float res = u_resolution.x / 2.;
+    float res = u_resolution.x / 16.;
     
     res *= 1.-(dist * 4.);
     float speed = 0.5;

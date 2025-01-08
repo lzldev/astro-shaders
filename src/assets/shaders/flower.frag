@@ -10,31 +10,9 @@ void main() {
     vec2 st = gl_FragCoord.xy/u_resolution.xy;
     st.x *= u_resolution.x/u_resolution.y;
     
-    st -= vec2(0.5,0.);
+    //st -= vec2(0.5,0.);
     
-    vec2 p1 = vec2(0.0,0.25);
-    vec2 p2 = vec2(0.,0.75);
-    vec2 p3 = vec2(1.,0.25);
-    vec2 p4 = vec2(1.,0.75);
-
-    vec2 pos = p1-st;
-    
-    if(length(pos) > length(p2-st)){
-        pos = p2-st;
-    }
-    
-    if(length(pos) > length(p3-st)){
-        pos = p3-st;
-    }
-
-    if(length(pos) > length(p4-st)){
-        pos = p4-st;
-    }
-
-    
-
-
-    
+    vec2 pos = vec2(0.5)-st;
 
     float r = length(pos)*4.;
     float r2 = 1.-(r*2.096);
