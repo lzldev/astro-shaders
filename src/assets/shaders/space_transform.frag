@@ -42,12 +42,14 @@ float scorner(in vec2 st,in float size){
     ((1.-step(size,st.x)) * (1.-step(size,st.y))) +
     ((step(1.-size,st.x)) * (1.-step(size,st.y)));
 }
+
 float acorner(in vec2 st,in float size){
     return 1.-step(0.1,distance(vec2(0.0),st)) +
     1.-step(0.1,distance(vec2(1.0,0.0),st)) +
     1.-step(0.1,distance(vec2(1.0,1.0),st)) +
     1.-step(0.1,distance(vec2(0.0,1.0),st));
 }
+
 float fcorner(in vec2 st,in float size){
     return 1.-step(0.1,distance(vec2(0.0),st)) +
     1.-step(0.1,distance(vec2(1.0,0.0),st)) +

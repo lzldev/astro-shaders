@@ -11,24 +11,28 @@ uniform float u_time;
 void main(){
   vec2 st = gl_FragCoord.xy/u_resolution.xy;
   st.x *= u_resolution.x/u_resolution.y;
+  if(u_resolution.x/u_resolution.y > 1.1 || u_resolution.x/u_resolution.y < 0.9 ){
+      st.x -= 0.5;
+  }
+
   vec3 color = vec3(0.0);
   float d = 0.0;
 
   // Remap the space to -1. to 1.
   st = st *2.-1.;
   
-  st -= vec2(1.,0.);
+  //st -= vec2(1.,0.);
 
   // Make the distance field
 	d = min(length(abs(st)-0.33) , length(abs(st)-0.66));
 	d = min(d,length(abs(st)-vec2(0.66,0)));
 	d = min(d,length(abs(st)-vec2(0.,0.66)));
-    d = min(d,length(abs(st)-vec2(1.132,0.)));
-    d = min(d,length(abs(st)-vec2(1.)));
-    d = min(d,length(abs(st)-vec2(0.)));
-    
-    float freq = 1.;
-    d += sin(u_time * freq);
+  d = min(d,length(abs(st)-vec2(1.132,0.)));
+  d = min(d,length(abs(st)-vec2(1.)));
+  d = min(d,length(abs(st)-vec2(0.)));
+  
+  float freq = 1.;
+  d += sin(u_time * freq);
 
 // d = min(length(abs(st)-0.3) , length(abs(st)-0.6));
   // d = length( min(abs(st)-.3,0.) );

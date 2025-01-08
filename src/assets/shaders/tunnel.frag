@@ -18,7 +18,21 @@ void main() {
     float len_y = 0.4;
 
     vec2 norm = gl_FragCoord.xy / u_resolution.xy;
-    vec2 center = vec2(0.5);
+    norm.x *= u_resolution.x/u_resolution.y;
+    
+    vec2 nmouse = u_mouse / u_resolution.xy;
+    nmouse.x *= u_resolution.x/u_resolution.y;
+
+    if(u_resolution.x/u_resolution.y > 1.1 || u_resolution.x/u_resolution.y < 0.9 ){
+        norm.x -= 0.5;
+        nmouse.x -= 0.5;
+    }
+
+    vec2 center = nmouse;
+    
+    if(u_mouse == vec2(0.)){
+        center = vec2(0.5);
+    }
     
     vec2 vdist = norm-center;
     float dist = abs(length(vdist) * 1.);
@@ -67,12 +81,6 @@ void main() {
 
     //color += (colorIndex == 0.) ? red : (colorIndex == 1.) ? blue : green;
     
-    float border = 1.-step(0.5,dist);
-
-    color += step(0.49,dist) * vec3(1.);
-
-    color *= border;
-    alpha *= border;
 
     gl_FragColor = vec4(color,alpha);
 }

@@ -11,6 +11,7 @@ void main() {
     float res = 10.;
 
     vec2 norm = (gl_FragCoord.xy/u_resolution.xy) * res;
+    norm.x *= u_resolution.x/u_resolution.y;
     
     float x_mod = floor(mod(norm.x,2.));
     float y_mod = floor(mod(norm.y,2.));

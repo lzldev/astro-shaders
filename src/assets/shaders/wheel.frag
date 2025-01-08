@@ -25,9 +25,11 @@ void main(){
     
     if(u_mouse != vec2(0.)){
         center = u_mouse / u_resolution.xy;
+        center.x *= u_resolution.x/u_resolution.y;
     }
     
     vec2 st = gl_FragCoord.xy/u_resolution;
+    st.x *= u_resolution.x/u_resolution.y;
  
     // Use polar coordinates instead of cartesian
     vec2 toCenter = center-st;

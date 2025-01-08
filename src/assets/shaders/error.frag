@@ -9,6 +9,7 @@ uniform float u_time;
 void main() {
     float res = 10.;
     vec2 norm = gl_FragCoord.xy/u_resolution.xy;
+    norm.x *= u_resolution.x/u_resolution.y;
 
     float x_10 = ceil(norm.x * res - cos(u_time));
     float y_10 = ceil(norm.y * res - sin(u_time));
