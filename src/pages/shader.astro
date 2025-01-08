@@ -1,7 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-const shaders = import.meta.glob("../assets/shaders/*.frag");
+const shaders = import.meta.glob("../assets/shaders/*.frag", {
+  import: "default",
+  query: "raw",
+});
 
 const files = Object.keys(shaders).map((key) =>
   key.split("/").at(-1)?.split(".").slice(0, -1).join("")
