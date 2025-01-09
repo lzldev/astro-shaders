@@ -12,6 +12,7 @@ void main() {
     if(u_resolution.x/u_resolution.y > 1.1 || u_resolution.x/u_resolution.y < 0.9 ){
         norm.x -= 0.5;
     }
+
     vec2 center = vec2(0.5);
     
     vec2 vdist = norm-center;

@@ -1,4 +1,5 @@
 ---
+import Funny from "../components/Funny.astro";
 import ShaderCanvas from "../components/ShaderCanvas.astro";
 import Layout from "../layouts/Layout.astro";
 
@@ -28,4 +29,6 @@ const height = size;
   <ShaderCanvas width={width} height={height} shader="space_transform.frag" />
   <ShaderCanvas width={width} height={height} shader="distance_field.frag" />
   <ShaderCanvas width={width} height={height} shader="tv.frag" />
+  <ShaderCanvas width={width} height={height} shader="random_01.frag" />
+  <ShaderCanvas width={width} height={height} shader="hmmm_celulas.frag" />
 </Layout>

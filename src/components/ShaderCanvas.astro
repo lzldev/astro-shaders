@@ -16,7 +16,8 @@ const { shader = "error.frag", width = "256", height = "256" } = Astro.props;
   height={height}
   style="background-color:transparent;"></canvas>
 <script>
-  import "glslCanvas";
+  //@ts-ignore
+  import GlslCanvas from "glslCanvas";
 
   const shaders = import.meta.glob("../assets/shaders/*.frag", {
     import: "default",
@@ -28,7 +29,6 @@ const { shader = "error.frag", width = "256", height = "256" } = Astro.props;
   )!;
 
   canvas.forEach(async (canvas) => {
-    //@ts-expect-error
     const sandbox = new GlslCanvas(canvas);
 
     const file = shaders[`../assets/shaders/${canvas.dataset["shaderFile"]}`];
